@@ -1,5 +1,6 @@
 package com.example.k_satoshi.todolistapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mainListView = (ListView)findViewById(R.id.listView);
+        mainListView = (ListView) findViewById(R.id.listView);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
             TaskAdapter adapter = new TaskAdapter(this, tasks);
             mainListView.setAdapter(adapter);
 
+            findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, TaskEditActivity.class));
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
